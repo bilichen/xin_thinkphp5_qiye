@@ -42,7 +42,7 @@
                   </div>
                 </div> 
             </form>
-            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><button class="layui-btn" onclick="question_add('添加问题','question-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
@@ -98,8 +98,9 @@
                             34
                         </td>
                         <td class="td-manage">
-                            <a style="text-decoration:none" onclick="question_recover(this,'10001')" href="javascript:;" title="恢复">
-                                <i class="layui-icon">&#xe618;</i>
+                            <a title="编辑" href="javascript:;" onclick="question_edit('编辑','question-edit.html','4','','510')"
+                            class="ml-5" style="text-decoration:none">
+                                <i class="layui-icon">&#xe642;</i>
                             </a>
                             <a title="删除" href="javascript:;" onclick="question_del(this,'1')" 
                             style="text-decoration:none">
@@ -109,6 +110,7 @@
                     </tr>
                 </tbody>
             </table>
+
             <div id="page"></div>
         </div>
         <script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
@@ -171,14 +173,13 @@
              function question_show (argument) {
                 layer.msg('可以跳到前台具体问题页面',{icon:1,time:1000});
              }
-            
-            /*恢复*/
-            function question_recover(obj,id){
-                layer.confirm('确认要恢复吗？',function(index){
-                    //发异步删除数据
-                    $(obj).parents("tr").remove();
-                    layer.msg('已恢复!',{icon:1,time:1000});
-                });
+             /*添加*/
+            function question_add(title,url,w,h){
+                x_admin_show(title,url,w,h);
+            }
+            //编辑 
+           function question_edit (title,url,id,w,h) {
+                x_admin_show(title,url,w,h); 
             }
 
             /*删除*/
