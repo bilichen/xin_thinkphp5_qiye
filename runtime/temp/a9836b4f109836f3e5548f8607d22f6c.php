@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\login\login.html";i:1510496935;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\login\login.html";i:1510506053;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +35,7 @@
                     <img src="__STATIC__/admin/images/logo.png" alt="">
                 </div>
                 <div class="input">
-                    <form class="layui-form">
+                    <form class="layui-form"  method="post" action="<?php echo url('login/formHandle'); ?>">
                         <div class="layui-form-item x-login-box">
                             <label for="username" class="layui-form-label">
                                 <i class="layui-icon">&#xe612;</i>
@@ -50,12 +50,12 @@
                                 <i class="layui-icon">&#xe628;</i>
                             </label>
                             <div class="layui-input-inline">
-                                <input type="password" id="pass" name="pass" required="" lay-verify="pass"
+                                <input type="password" id="password" name="password" required="" lay-verify="pass"
                                 autocomplete="off" placeholder="******" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item" id="loginbtn">
-                            <button  class="layui-btn" lay-filter="save" lay-submit="">
+                            <button  class="layui-btn" lay-filter="save" lay-submit="" type="submit">
                                 登 录
                             </button>
                         </div>
@@ -79,16 +79,16 @@
                 });
 
                 //监听提交
-                form.on('submit(save)',
-                function(data) {
-                    console.log(data);
-                    layer.alert(JSON.stringify(data.field), {
-                      title: '最终的提交信息'
-                    },function  () {
-                        location.href = "__STATIC__/admin/index.html";
-                    })
-                    return false;
-                });
+//                form.on('submit(save)',
+//                function(data) {
+//                    console.log(data);
+//                    layer.alert(JSON.stringify(data.field), {
+//                      title: '最终的提交信息'
+//                    },function  () {
+//                        location.href = "__STATIC__/admin/index.html";
+//                    })
+//                    return false;
+//                });
 
             });
 
