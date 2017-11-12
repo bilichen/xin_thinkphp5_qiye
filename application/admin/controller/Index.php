@@ -13,28 +13,28 @@ class Index extends Base
     {
         return $this->fetch();
     }
-    public function question_list()
-    {
-        return $this->fetch();
-    }
-    public function question_del()
-    {
-        return $this->fetch();
-    }
-    public function banner_list()
-    {
-        return $this->fetch();
-    }
-    public function category()
-    {
-        return $this->fetch();
-    }
-    public function admin_list()
-    {
-        return $this->fetch();
-    }
-    public function sys_set()
-    {
-        return $this->fetch();
-    }
+//    public function question_list()
+//    {
+//        return $this->fetch();
+//    }
+//    public function question_del()
+//    {
+//        return $this->fetch();
+//    }
+//    public function banner_list()
+//    {
+//        return $this->fetch();
+//    }
+//    public function category()
+//    {
+//        return $this->fetch();
+//    }
+//    public function admin_list()
+//    {
+//        return $this->fetch();
+//    }
+//    public function sys_set()
+//    {
+//        return $this->fetch();
+//    }
 }
