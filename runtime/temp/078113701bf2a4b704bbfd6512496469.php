@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\index\index.html";i:1510496935;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\left.html";i:1510496935;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\footer.html";i:1510496935;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\index\index.html";i:1510545498;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510462623;s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\left.html";i:1510546217;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510462623;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,9 +27,8 @@
       <li class="layui-nav-item">
         <a href="javascript:;">admin</a>
         <dl class="layui-nav-child"> <!-- 二级菜单 -->
-          <dd><a href="">个人信息</a></dd>
-          <dd><a href="">切换帐号</a></dd>
-          <dd><a href="__STATIC__/admin/login.html">退出</a></dd>
+
+          <dd><a href="<?php echo url('login/logout'); ?>">退出</a></dd>
         </dl>
       </li>
       <!-- <li class="layui-nav-item">

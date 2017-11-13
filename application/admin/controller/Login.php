@@ -16,6 +16,7 @@ class Login extends Base
 //       $result = Admin::get($where);
 //        dump($result);
 //        die;
+        $this->repeatLogin();
         return $this->fetch('login');
     }
 
@@ -47,59 +48,13 @@ class Login extends Base
         }
     }
 
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
+    //退出账号，回到登录界面
+    public function logout()
     {
-        //
+        Session::delete('user_id');
+        Session::delete('user_info');
+        return $this->fetch('login');
     }
 
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
 
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
-    }
 }
