@@ -3,83 +3,46 @@
 namespace app\admin\controller;
 
 use app\admin\common\Base;
+use app\admin\model\Admin;
 use think\Request;
 
 class Manger extends Base
 {
-    /**
-     * 显示资源列表
-     *
-     * @return \think\Response
-     */
+    //管理员首页
     public function index()
     {
+        $admin = Admin::get(['username'=>'admin']);
+        $this->assign('admin',$admin);
         return $this->fetch('manger_list');
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
+    //管理员编辑
+    public function edit(Request $request)
     {
-        //
+        $admin = Admin::get($request->param('id'));
+        $this->assign('admin',$admin);
+        return $this->fetch('manger_edit');
     }
 
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-        //
+    //管理员数据更新
+    public function update(Request $request){
+
+        if($request->isAjax(true)){
+         $data = $request->param();
+
+            if($data['is_update']==1){
+                $map = ['is_update' => $data['is_update']];
+                Admin::update($data,$map);
+                $status = 1;
+                $message = '更新成功';
+            }else{
+                $status = 0;
+                $message = '更新失败';
+            }
+        }
+        return ['status'=>$status,'message'=>$message];
+
+
     }
 
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
-    }
 }

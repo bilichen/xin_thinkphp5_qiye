@@ -3,83 +3,38 @@
 namespace app\admin\controller;
 
 use app\admin\common\Base;
+use app\admin\model\System;
 use think\Request;
 
 class Sys extends Base
 {
-    /**
-     * 显示资源列表
-     *
-     * @return \think\Response
-     */
+    //系统设置显示模版
     public function index()
     {
+        $system = System::get(1);
+        $this->assign('system',$system);
         return $this->fetch('sys_set');
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
+   //更新系统设置
+    public function update(Request $request)
     {
-        //
+
+        if($request->isAjax(true)){
+            $data = $request->param();
+
+            if($data['is_update']==1){
+                $map = ['is_update' => $data['is_update']];
+                System::update($data,$map);
+                $status = 1;
+                $message = '更新成功';
+            }else{
+                $status = 0;
+                $message = '更新失败';
+            }
+        }
+        return ['status'=>$status,'message'=>$message];
     }
 
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-        //
-    }
 
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
-    }
 }
