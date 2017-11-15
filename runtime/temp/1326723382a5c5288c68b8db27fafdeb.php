@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\sys\sys_set.html";i:1510681886;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510587375;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\sys\sys_set.html";i:1510727541;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510462623;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510725716;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,11 +67,11 @@
 <!--                                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" title="开关">-->
                                 <select name="is_close">
                                     <?php if($system["is_close"] == '1'): ?>
-                                    <option value="1" selected="selected">开</option>
-                                    <option value="0">关</option>
+                                    <option value="1" selected="selected">开启网站</option>
+                                    <option value="0">关闭网站</option>
                                     <?php else: ?>
-                                    <option value="1">开</option>
-                                    <option value="0" selected="selected">关</option>
+                                    <option value="1">开启网站</option>
+                                    <option value="0" selected="selected">关闭网站</option>
                                     <?php endif; ?>
                                 </select>
                             </div>

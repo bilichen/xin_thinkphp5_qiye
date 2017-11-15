@@ -2,7 +2,9 @@
 namespace app\index\controller;
 
 
-class Index {
+use app\admin\common\Base;
+
+class Index extends Base{
     public function index()
     {
         return '我是前台页面';
