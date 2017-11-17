@@ -3,83 +3,33 @@
 namespace app\admin\controller;
 
 use app\admin\common\Base;
+use app\admin\model\Category as CategoryModel;
 use think\Request;
 
 class Category extends Base
 {
-    /**
-     * 显示资源列表
-     *
-     * @return \think\Response
-     */
+    //显示分类页面
     public function index()
     {
+       $cate = CategoryModel::getCate();
+//        p($cate);die;
+        $this->assign('cate',$cate);
         return $this->fetch('category');
     }
 
-    /**
-     * 显示创建资源表单页.
-     *
-     * @return \think\Response
-     */
-    public function create()
+    //分类编辑
+    public function edit(Request $request)
     {
-        //
+        $id = $request->param('id');
+        $pid = CategoryModel::where('cate_id',$id)->value('cate_pid');
+        p($pid);die;
+        $cate = CategoryModel::get($id);
+        $data =  CategoryModel::all();
+//        p($id);die;
+       $parent = CategoryModel::getParentName($data,$id);
+        p($parent);die;
+        $this->assign('cate',$cate);
+        return $this->fetch('cate_edit');
     }
 
-    /**
-     * 保存新建的资源
-     *
-     * @param  \think\Request  $request
-     * @return \think\Response
-     */
-    public function save(Request $request)
-    {
-        //
-    }
-
-    /**
-     * 显示指定的资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function read($id)
-    {
-        //
-    }
-
-    /**
-     * 显示编辑资源表单页.
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * 保存更新的资源
-     *
-     * @param  \think\Request  $request
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * 删除指定资源
-     *
-     * @param  int  $id
-     * @return \think\Response
-     */
-    public function delete($id)
-    {
-        //
-    }
 }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\category\category.html";i:1510569814;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510573944;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\category\category.html";i:1510936623;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510587375;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,12 +32,10 @@
                     <div class="layui-input-inline" style="width:120px;text-align: left">
                         <select name="fid">
                             <option value="0">顶级分类</option>
-                            <option value="新闻">新闻</option>
-                            <option value="新闻子类1">--新闻子类1</option>
-                            <option value="新闻子类2">--新闻子类2</option>
-                            <option value="产品">产品</option>
-                            <option value="产品子类1">--产品子类1</option>
-                            <option value="产品子类2">--产品子类2</option>
+                            <?php if(is_array($cate) || $cate instanceof \think\Collection || $cate instanceof \think\Paginator): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                            <option value=<?php echo $vo['cate_id']; ?>><?php echo $vo['html']; ?><?php echo $vo['cate_name']; ?></option>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
+
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width:120px">
@@ -71,21 +69,22 @@
                     </tr>
                 </thead>
                 <tbody id="x-link">
+                <?php if(is_array($cate) || $cate instanceof \think\Collection || $cate instanceof \think\Paginator): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <tr>
                         <td>
-                            <input type="checkbox" value="1" name="">
+                            <input type="checkbox" value="<?php echo $vo['cate_id']; ?>" name="">
                         </td>
                         <td>
-                            1
+                            <?php echo $vo['cate_id']; ?>
                         </td>
                         <td>
-                            1
+                            <?php echo $vo['cate_order']; ?>
                         </td>
                         <td>
-                            新闻
+                            <?php echo $vo['html']; ?><?php echo $vo['cate_name']; ?>
                         </td>
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','cate-edit.html','4','','510')"
+                            <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','<?php echo url("category/edit"); ?>'+'?id='+<?php echo $vo['cate_id']; ?>,'4','','510')"
                             class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
@@ -94,13 +93,17 @@
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
                         </td>
+
                     </tr>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
             </table>
         </div>
-        <script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
+        <script src="__STATIC__/admin/js/jquery.min.js"></script>
+<script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
 <script src="__STATIC__/admin/js/x-admin.js"></script>
-<script src="__STATIC__/admin/js/jquery.min.js"></script>
+
+        <script src="__STATIC__/admin/js/x-layui.js" charset="utf-8"></script>
 
         <script>
             layui.use(['element','layer','form'], function(){
@@ -146,14 +149,6 @@
                 });
             }
             </script>
-            <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
+
     </body>
 </html>

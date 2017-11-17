@@ -16,12 +16,10 @@
                     <div class="layui-input-inline" style="width:120px;text-align: left">
                         <select name="fid">
                             <option value="0">顶级分类</option>
-                            <option value="新闻">新闻</option>
-                            <option value="新闻子类1">--新闻子类1</option>
-                            <option value="新闻子类2">--新闻子类2</option>
-                            <option value="产品">产品</option>
-                            <option value="产品子类1">--产品子类1</option>
-                            <option value="产品子类2">--产品子类2</option>
+                            {volist name='cate' id='vo'}
+                            <option value={$vo.cate_id}>{$vo.html}{$vo.cate_name}</option>
+                            {/volist}
+
                         </select>
                     </div>
                     <div class="layui-input-inline" style="width:120px">
@@ -55,21 +53,22 @@
                     </tr>
                 </thead>
                 <tbody id="x-link">
+                {volist name='cate' id='vo'}
                     <tr>
                         <td>
-                            <input type="checkbox" value="1" name="">
+                            <input type="checkbox" value="{$vo.cate_id}" name="">
                         </td>
                         <td>
-                            1
+                            {$vo.cate_id}
                         </td>
                         <td>
-                            1
+                            {$vo.cate_order}
                         </td>
                         <td>
-                            新闻
+                            {$vo.html}{$vo.cate_name}
                         </td>
                         <td class="td-manage">
-                            <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','cate-edit.html','4','','510')"
+                            <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','{:url("category/edit")}'+'?id='+{$vo.cate_id},'4','','510')"
                             class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
@@ -78,11 +77,15 @@
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
                         </td>
+
                     </tr>
+                {/volist}
                 </tbody>
             </table>
         </div>
         {include file="public/admin_js" /}
+        <script src="__STATIC__/admin/js/x-layui.js" charset="utf-8"></script>
+
         <script>
             layui.use(['element','layer','form'], function(){
                 $ = layui.jquery;//jquery
@@ -127,14 +130,6 @@
                 });
             }
             </script>
-            <script>
-        var _hmt = _hmt || [];
-        (function() {
-          var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-          var s = document.getElementsByTagName("script")[0]; 
-          s.parentNode.insertBefore(hm, s);
-        })();
-        </script>
+
     </body>
 </html>

@@ -50,12 +50,12 @@
                             <div class="layui-input-block">
 <!--                                <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" title="开关">-->
                                 <select name="is_close">
-                                    {eq name='$system["is_close"]' value='1'}
-                                    <option value="1" selected="selected">开启网站</option>
-                                    <option value="0">关闭网站</option>
+                                    {eq name='$system["is_close"]' value='0'}
+                                    <option value="0" selected="selected">开启网站</option>
+                                    <option value="1">关闭网站</option>
                                     {else /}
-                                    <option value="1">开启网站</option>
-                                    <option value="0" selected="selected">关闭网站</option>
+                                    <option value="0">开启网站</option>
+                                    <option value="1" selected="selected">关闭网站</option>
                                     {/eq}
                                 </select>
                             </div>
