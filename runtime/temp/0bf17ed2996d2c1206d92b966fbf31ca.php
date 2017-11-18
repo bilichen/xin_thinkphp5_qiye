@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\category\category.html";i:1510936623;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510587375;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\category\category.html";i:1511021961;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510587375;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +34,7 @@
                             <option value="0">顶级分类</option>
                             <?php if(is_array($cate) || $cate instanceof \think\Collection || $cate instanceof \think\Paginator): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                             <option value=<?php echo $vo['cate_id']; ?>><?php echo $vo['html']; ?><?php echo $vo['cate_name']; ?></option>
+
                             <?php endforeach; endif; else: echo "" ;endif; ?>
 
                         </select>
@@ -41,12 +42,15 @@
                     <div class="layui-input-inline" style="width:120px">
                         <input type="text" name="name"  placeholder="分类名" autocomplete="off" class="layui-input">
                     </div>
-                    <div class="layui-input-inline" style="width:80px">
-                        <button class="layui-btn"  lay-submit="" lay-filter="add"><i class="layui-icon">&#xe608;</i>增加</button>
+
+                      <div class="layui-input-inline" style="width:80px">
+                        <button id="add" type="button" class="layui-btn"  lay-submit="" lay-filter="add"><i class="layui-icon">&#xe608;</i>增加</button>
                     </div>
                   </div>
                 </div> 
             </form>
+
+
             <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
             <table class="layui-table">
                 <thead>
@@ -68,7 +72,6 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody id="x-link">
                 <?php if(is_array($cate) || $cate instanceof \think\Collection || $cate instanceof \think\Paginator): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <tr>
                         <td>
@@ -88,7 +91,8 @@
                             class="ml-5" style="text-decoration:none">
                                 <i class="layui-icon">&#xe642;</i>
                             </a>
-                            <a title="删除" href="javascript:;" onclick="cate_del(this,'1')" 
+
+                            <a title="删除" href="javascript:;" onclick="cate_del('<?php echo $vo['cate_name']; ?>','<?php echo $vo['cate_id']; ?>')"
                             style="text-decoration:none">
                                 <i class="layui-icon">&#xe640;</i>
                             </a>
@@ -112,14 +116,13 @@
               layer = layui.layer;//弹出层
               form = layui.form();
 
-              //监听提交
-              form.on('submit(add)', function(data){
-                console.log(data);
-                //发异步，把数据提交给php
-                layer.alert("增加成功", {icon: 6});
-                $('#x-link').prepend('<tr><td><input type="checkbox"value="1"name=""></td><td>1</td><td>1</td><td>'+data.field.name+'</td><td class="td-manage"><a title="编辑"href="javascript:;"onclick="cate_edit(\'编辑\',\'cate-edit.html\',\'4\',\'\',\'510\')"class="ml-5"style="text-decoration:none"><i class="layui-icon">&#xe642;</i></a><a title="删除"href="javascript:;"onclick="cate_del(this,\'1\')"style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a></td></tr>');
-                return false;
-              });
+//              //监听提交
+//              form.on('submit(add)', function(data){
+//                console.log(data);
+//                //发异步，把数据提交给php
+//                layer.alert("增加成功", {icon: 6});
+//                return false;
+//              });
 
 
             })
@@ -141,14 +144,56 @@
             }
            
             /*-删除*/
-            function cate_del(obj,id){
-                layer.confirm('确认要删除吗？',function(index){
-                    //发异步删除数据
-                    $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
-                });
+            function cate_del(cname,id){
+                layer.confirm('确定要删除'+cname+'分类吗？',{
+                    btn:['确定','取消']
+                },function(index){
+                    layer.close(index);
+                    console.log("点击了确定");
+                    $.ajax({
+                        type:'POST',
+                        url:"<?php echo url('category/del'); ?>",
+                        data: {"id":id},
+                        dataType:"json",
+                        success:function (data){
+                            if(data.status==1){
+                                alert(data.message);
+                                window.location.reload();
+                            }else{
+                                alert(data.message);
+
+                            }
+                        }
+                    })
+
+                },function(){
+                    console.log("点击了取消");
+                })
             }
             </script>
+        <script>
+            //用ajax提交表单
+            $(function(){
+                $('#add').on('click',function(){
+                    $.ajax({
+                        type:'POST',
+                        url:"<?php echo url('category/add'); ?>",
+                        data:$(".layui-form").serialize(),
+                        dataType:"json",
+                        success:function (data){
+                            if(data.status==1){
+                                alert(data.message);
+                                window.location.reload();
+                            }else{
+                                alert(data.message);
+
+                            }
+                        }
+                    })
+                });
+            });
+
+        </script>
 
     </body>
 </html>

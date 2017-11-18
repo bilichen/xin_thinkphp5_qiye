@@ -69,7 +69,7 @@
             $('#submit').on('click',function(){
                 $.ajax({
                         type:'POST',
-                        url:"{:url('manger/update')}",
+                        url:"{:url('category/update')}",
                         data:$(".layui-form").serialize(),
                         dataType:"json",
                         success:function (data){

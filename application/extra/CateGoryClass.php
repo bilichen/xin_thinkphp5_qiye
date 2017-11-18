@@ -57,23 +57,11 @@ class CateGoryClass{
         $arr = array();
         foreach($cate as $v){
             if($v['cate_id'] == $id){
-                $arr[] = $v;
+                $arr[] = $v['cate_name'];
                 $arr = array_merge(self::getParent($cate,$v['cate_pid']),$arr);
             }
         }
         return $arr;
     }
-    //传进一个子级分类pid，获取所有父级分类
-    static public function getParentName($cate,$pid){
-        $arr = array();
-        foreach($cate as $v){
-            if($v['cate_pid'] == $pid){
-                $arr[] = $v;
-                $arr = array_merge(self::getParent($cate,$v['cate_pid']),$arr);
-            }
-        }
-        return $arr;
-    }
-
 
 }

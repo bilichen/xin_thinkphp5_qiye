@@ -18,6 +18,16 @@ class Category extends Model
 
     //获取父级分类名称
     static public function getParentName($cate,$id){
-        return CateGoryClass::getParent($cate,$id);
+        $parentName = CateGoryClass::getParent($cate,$id);
+//        $var = '';
+//        p($parentName);die;
+        if(empty($parentName)){
+            $var = '顶级';
+        }else{
+            $var = $parentName[0];//这里只判断只有一个父级，如果是多层则要改变方法
+        }
+
+
+        return $var;
     }
 }
