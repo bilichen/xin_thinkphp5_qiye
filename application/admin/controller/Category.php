@@ -12,7 +12,13 @@ class Category extends Base
     public function index()
     {
        $cate = CategoryModel::getCate();
-//        p($cate);die;
+
+        $cate_list = CategoryModel::paginate(5);//这个方法，只是简单从数据库中获取记录，不进行分类
+//              p($cate_list);die;
+        $count = CategoryModel::count();
+        // 把分页数据赋值给模板变量list
+        $this->assign('cate_list', $cate_list);
+        $this->assign('count', $count);
         $this->assign('cate',$cate);
         return $this->fetch('category');
     }

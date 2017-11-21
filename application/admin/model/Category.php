@@ -8,13 +8,17 @@ use app\extra\CateGoryClass;
 
 class Category extends Model
 {
-    //
+    //方法一
     static public function getCate(){
         $data = Category::all();
         $data = collection($data)->toArray();
-//        p($data);die;
        return CateGoryClass::subtree($data);
     }
+    //方法二,视频教的方法，获取分类表，也是用递归，大同小易
+//    static public function getCate(){
+//
+//        return CateGoryClass::getCate();
+//    }
 
     //获取父级分类名称
     static public function getParentName($cate,$id){

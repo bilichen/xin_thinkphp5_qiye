@@ -1,6 +1,9 @@
 <?php
 namespace app\extra;
 
+use think\Collection;
+use app\admin\model\Category as CategoryModel;
+
 class CateGoryClass{
 
     //把所有的数据，压成分组数组
@@ -16,6 +19,24 @@ class CateGoryClass{
         }
         return $arr;
     }
+
+//    static public function getCate($pid=0,&$result=[],$blank=0){
+//        //1、获取所有数据
+//       $res = CategoryModel::all(['cate_pid'=>$pid]);
+////        p($res);die;
+//        //2、创建层级空格
+//        $blank += 2;
+//
+//        //3、对层级关系重新定义
+//        foreach($res as $key=>$value){
+//            $cate_name = '|--'.$value->cate_name;
+//            $value->cate_name = str_repeat('$nbsp',$blank).$cate_name;
+//            $result[] = $value;
+//            self::getCate($value->cate_id,$result,$blank);
+//        }
+//        return Collection::make($result)->toArray();
+//    }
+
     //组合多维数组
     static public function unlimitedForLayer($cate,$name='child',$pid=0){
         $arr = array();

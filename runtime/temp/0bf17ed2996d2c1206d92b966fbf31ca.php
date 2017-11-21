@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\category\category.html";i:1511021961;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1510587375;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\category\category.html";i:1511068757;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1511068606;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +51,7 @@
             </form>
 
 
-            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><span class="x-right" style="line-height:40px">共有数据：88 条</span></xblock>
+            <xblock><button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><span class="x-right" style="line-height:40px">共有数据：<?php echo $count; ?> 条</span></xblock>
             <table class="layui-table">
                 <thead>
                     <tr>
@@ -72,7 +72,7 @@
                         </th>
                     </tr>
                 </thead>
-                <?php if(is_array($cate) || $cate instanceof \think\Collection || $cate instanceof \think\Paginator): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <?php if(is_array($cate_list) || $cate_list instanceof \think\Collection || $cate_list instanceof \think\Paginator): $i = 0; $__LIST__ = $cate_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <tr>
                         <td>
                             <input type="checkbox" value="<?php echo $vo['cate_id']; ?>" name="">
@@ -84,7 +84,7 @@
                             <?php echo $vo['cate_order']; ?>
                         </td>
                         <td>
-                            <?php echo $vo['html']; ?><?php echo $vo['cate_name']; ?>
+                            <?php echo $vo['cate_name']; ?>
                         </td>
                         <td class="td-manage">
                             <a title="编辑" href="javascript:;" onclick="cate_edit('编辑','<?php echo url("category/edit"); ?>'+'?id='+<?php echo $vo['cate_id']; ?>,'4','','510')"
@@ -100,14 +100,20 @@
 
                     </tr>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
-                </tbody>
             </table>
+           <div style="text-align: center"><?php echo $cate_list->render(); ?></div>
         </div>
         <script src="__STATIC__/admin/js/jquery.min.js"></script>
 <script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
 <script src="__STATIC__/admin/js/x-admin.js"></script>
 
+<!--引入bootstrap-->
+<!--<link rel="stylesheet" type="text/css" href="__STATIC__/admin/lib/bootstrap/css/bootstrap.css" />-->
+<!--<script type="text/javascript" src="__STATIC__/admin/lib/bootstrap/js/bootstrap.js"></script>-->
+
         <script src="__STATIC__/admin/js/x-layui.js" charset="utf-8"></script>
+        <link rel="stylesheet" type="text/css" href="__STATIC__/admin/lib/bootstrap/css/bootstrap.css" />
+        <script type="text/javascript" src="__STATIC__/admin/lib/bootstrap/js/bootstrap.js"></script>
 
         <script>
             layui.use(['element','layer','form'], function(){
