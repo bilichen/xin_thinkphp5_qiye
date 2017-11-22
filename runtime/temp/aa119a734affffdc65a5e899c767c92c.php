@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\index\welcome.html";i:1510569814;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1511068606;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\index\welcome.html";i:1510569814;s:86:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\header.html";i:1510496935;s:88:"E:\xampp\htdocs\xin_thinkphp5_qiye\public/../application/admin\view\public\admin_js.html";i:1511348468;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -199,6 +199,7 @@
 <script src="__STATIC__/admin/js/jquery.min.js"></script>
 <script src="__STATIC__/admin/lib/layui/layui.js" charset="utf-8"></script>
 <script src="__STATIC__/admin/js/x-admin.js"></script>
+<script src="__STATIC__/admin/js/x-layui.js" charset="utf-8"></script>
 
 <!--引入bootstrap-->
 <!--<link rel="stylesheet" type="text/css" href="__STATIC__/admin/lib/bootstrap/css/bootstrap.css" />-->
